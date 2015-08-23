@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Flyer;
 use App\Http\Requests\FlyerRequest;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 class FlyersController extends Controller
 {
@@ -40,6 +38,8 @@ class FlyersController extends Controller
     public function store(FlyerRequest $request)
     {
         Flyer::create($request->except('_token'));
+
+        flash()->success('Success!', 'Your flyer has been created.');
 
         return redirect()->back();
     }

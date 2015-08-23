@@ -5,4 +5,6 @@ Homestead.json
 .env
 .idea
 _ide_helper.php
-public/css
+public/css/
+resources/components/
+public/js/
