@@ -6,6 +6,7 @@ use App\Flyer;
 use App\Http\Requests\FlyerRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Http\Response;
 
 class FlyersController extends Controller
 {
@@ -50,9 +51,11 @@ class FlyersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show($zip, $street)
     {
-        //
+        $flyer = Flyer::locatedAt($zip, $street)->first();
+
+        return view('flyers.show', compact('flyer'));
     }
 
     /**
