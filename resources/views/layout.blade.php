@@ -35,5 +35,7 @@
         <script src="/js/libs.js"></script>
 
         @include('flash')
+
+        @yield('scripts.footer')
     </body>
 </html>
