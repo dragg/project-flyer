@@ -10,7 +10,7 @@
             point to create something more unique by building on or modifying it.
         </p>
 
-        <a href="{{ URL::route('flyers.create') }}" class="btn btn-primary">Create a Flyer</a>
+        <a href="{{ URL::route('houses.create') }}" class="btn btn-primary">Create a Flyer</a>
     </div>
 
 
