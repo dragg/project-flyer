@@ -16,6 +16,8 @@ class FlyersController extends Controller
     function __construct()
     {
         $this->middleware('auth', ['except' => ['show']]);
+
+        parent::__construct();
     }
 
     /**
@@ -80,6 +82,9 @@ class FlyersController extends Controller
         Flyer::locatedAt($zip, $street)->addPhoto($photo);
     }
 
+    /**
+     * @return Photo
+     */
     protected function makePhoto(UploadedFile $file)
     {
         return Photo::named($file->getClientOriginalName())->move($file);

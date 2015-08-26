@@ -1,8 +1,6 @@
 <?php
 
-Route::get('/', function () {
-    return view('pages.home');
-});
+Route::get('/', 'PagesController@home');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -14,6 +12,6 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 
-Route::resource('houses', 'FlyersController');
+Route::resource('flyers', 'FlyersController');
 Route::get('{zip}/{street}', 'FlyersController@show');
 Route::post('{zip}/{street}/photos', ['as' => 'store_photo_path', 'uses' => 'FlyersController@addPhoto']);

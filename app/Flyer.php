@@ -43,4 +43,25 @@ class Flyer extends Model
     {
         return '$' . number_format($price);
     }
+
+    /**
+     * A flyer is owned by a user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**Determine
+     * Determine if the given user created the flyer.
+     *
+     * @param User $user
+     * @return bool
+     */
+    public function ownedBy(User $user)
+    {
+        return $this->user_id == $user->id;
+    }
 }

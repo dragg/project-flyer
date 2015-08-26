@@ -5,7 +5,7 @@
 
     <hr>
 
-    <form method="post" action="{{ URL::route('houses.store') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ URL::route('flyers.store') }}" enctype="multipart/form-data">
         @include('flyers.form')
 
         @include('errors')

@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
 class FlyerRequest extends Request
 {
     /**
@@ -13,7 +11,7 @@ class FlyerRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return $this->user();
     }
 
     /**
