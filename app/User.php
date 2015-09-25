@@ -37,4 +37,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $relation->user_id == $this->id;
     }
+
+    public function publish(Flyer $flyer)
+    {
+        return $this->flyers()->save($flyer);
+    }
+
+    public function flyers()
+    {
+        return $this->hasMany(Flyer::class);
+    }
 }

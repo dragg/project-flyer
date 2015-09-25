@@ -6,7 +6,7 @@
 
         <hr>
 
-        <form action="/auth/register" method="POST">
+        <form action="{{ route('sign_up.method') }}" method="POST">
             {!! csrf_field() !!}
 
             <div class="form-group">

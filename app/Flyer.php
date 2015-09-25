@@ -29,6 +29,10 @@ class Flyer extends Model
         return static::where(compact('zip', 'street'))->firstOrFail();
     }
 
+    /**
+     * @param Photo $photo
+     * @return Photo
+     */
     public function addPhoto(Photo $photo)
     {
         return $this->photos()->save($photo);

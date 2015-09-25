@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Flyer;
 use App\Http\Requests;
-use App\Http\Requests\AddPhotoRequest;
 use App\Http\Requests\FlyerRequest;
-use App\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -42,22 +40,24 @@ class FlyersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  FlyerRequest  $request
+     * @param  FlyerRequest $request
      * @return Response
      */
     public function store(FlyerRequest $request)
     {
-        Flyer::create($request->except('_token'));
+        $flyer = $this->user->publish(
+            new Flyer ($request->all())
+        );
 
         flash()->success('Success!', 'Your flyer has been created.');
 
-        return redirect()->back();
+        return redirect()->route('flyers.show', [$flyer->zip, str_replace(' ', '-', $flyer->street)]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function show($zip, $street)
@@ -68,23 +68,9 @@ class FlyersController extends Controller
     }
 
     /**
-     * Apply a photo to the referenced flyer.
-     *
-     * @param string $zip
-     * @param string $street
-     * @param AddPhotoRequest $request
-     */
-    public function addPhoto($zip, $street, AddPhotoRequest $request)
-    {
-        $photo = Photo::fromFile($request->file('photo'));
-
-        Flyer::locatedAt($zip, $street)->addPhoto($photo);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function edit($id)
@@ -95,8 +81,8 @@ class FlyersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
-     * @param  int  $id
+     * @param  Request $request
+     * @param  int $id
      * @return Response
      */
     public function update(Request $request, $id)
@@ -107,7 +93,7 @@ class FlyersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function destroy($id)
