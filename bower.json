@@ -21,6 +21,7 @@
   ],
   "dependencies": {
     "sweetalert": "~1.1.0",
-    "dropzone": "enyo/dropzone#~4.0.1"
+    "dropzone": "enyo/dropzone#~4.0.1",
+    "lity": "~1.5.0"
   }
 }
