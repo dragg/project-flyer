@@ -15,3 +15,4 @@ Route::post('auth/register', ['as' => 'sign_up.method', 'uses' => 'Auth\AuthCont
 Route::resource('flyers', 'FlyersController');
 Route::get('{zip}/{street}', ['as' => 'flyers.show', 'uses' => 'FlyersController@show']);
 Route::post('{zip}/{street}/photos', ['as' => 'store_photo_path', 'uses' => 'FlyerPhotosController@store']);
+Route::delete('photos/{id}', ['as' => 'flyers.photos.delete', 'uses' => 'FlyerPhotosController@destroy']);

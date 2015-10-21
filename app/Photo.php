@@ -2,6 +2,7 @@
 
 namespace App;
 
+use File;
 use Illuminate\Database\Eloquent\Model;
 
 class Photo extends Model
@@ -25,5 +26,12 @@ class Photo extends Model
     public function flyer()
     {
         return $this->belongsTo(Flyer::class);
+    }
+
+    public function delete()
+    {
+        File::delete([$this->path, $this->thumbnail_path]);
+
+        parent::delete();
     }
 }
