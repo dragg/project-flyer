@@ -26,16 +26,4 @@ class Photo extends Model
     {
         return $this->belongsTo(Flyer::class);
     }
-
-    public function upload()
-    {
-        $this->makeThumbnail();
-
-        return $this;
-    }
-
-    protected function makeThumbnail()
-    {
-
-    }
 }
